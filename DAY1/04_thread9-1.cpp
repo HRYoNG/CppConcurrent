@@ -49,8 +49,8 @@ RT parallel_sum(IT first, IT last, RT init)
     const std::size_t cnt_thread = 
                     std::min(hw_cnt_thread, max_cnt_thread);
 
-
     std::cout << "생성할 스레드 갯수 : " << cnt_thread << std::endl;
+
 
     return 0;
 }
