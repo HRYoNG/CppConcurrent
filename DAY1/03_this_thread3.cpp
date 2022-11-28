@@ -20,3 +20,7 @@ int main()
 {
     mysleep(1s);
 }
+
+// cpu 타임이 얼마나 정확한 편인가요 ? => OS 마다 다릅니다.
+// windows : GetQueryPerformanceCounter() 라는 API 를 사용합니다.
+//
