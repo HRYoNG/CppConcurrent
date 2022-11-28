@@ -8,7 +8,7 @@ struct reference_wrapper
 	reference_wrapper(T& obj) : pobj(&obj) {}
 
 	// "raw reference" 로 변환을 허용한다.
-	operator T& const { return *pobj; }
+	operator T&() const { return *pobj; }
 };
 
 int main()
