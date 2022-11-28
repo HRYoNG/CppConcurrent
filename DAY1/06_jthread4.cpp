@@ -3,6 +3,12 @@
 #include <thread>
 using namespace std::literals;
 
+// C# 언어에서는 아래와 같은 기술을
+// "cooperative cancelation" 이라고 합니다.
+
+// 아래 처럼 만들면
+// 스레드당 한개의 "cancel flag" 가 필요 합니다.
+
 void foo(bool& flag)
 {
     for (int i = 0; i < 10; i++)
