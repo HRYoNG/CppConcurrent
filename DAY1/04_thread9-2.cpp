@@ -72,7 +72,17 @@ RT parallel_sum(IT first, IT last, RT init)
         block_start = block_end;
     }
 
-    return 0;
+    // 마지막 구간은 주스레드가 연산하면 됩니다.
+    // => 주스레드가 수행하므로 "std::ref()" 필요 없습니다.
+    sum(block_start, last, result_vector[cnt_thread - 1] );
+
+    // 모든 스레드의 종료를 대기 합니다.
+    for_each(thread_vector.begin(), thread_vector.end(),
+                        [](auto& t) { t.join(); });
+
+    // result_vector 안의 모든 결과를 더하면 됩니다.
+    return std::accumulate( result_vector.begin(), 
+                            result_vector.end(), 0);
 }
 
 
