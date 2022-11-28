@@ -28,17 +28,20 @@ void sum(IT first, IT last, RT& result)
 int main()
 {
     init();
+    int s = 0;    
 
-    int s = 0;
-    
 //  sum( v.begin(), v.end(), s);    // 주스레드가 실행
 
 
-    std::thread t(sum, v.begin(), v.end(), std::ref(s)); // error
-                                    // => 왜 에러일까요 ?
+//  std::thread t(sum, v.begin(), v.end(), std::ref(s)); // error
+                        // => 왜 에러일까요 ?
+                        // => sum 이 템플릿 인데, 직접 호출이 아니므로
+                        // => IT와 RT 타입의 추론이 안됩니다.
+
+    std::thread t(sum<std::vector<int>::iterator, int>, 
+                  v.begin(), v.end(), std::ref(s));
+
     t.join();
-
-
 
 
     std::cout << s << std::endl;
