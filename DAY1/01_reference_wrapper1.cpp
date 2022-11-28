@@ -15,9 +15,12 @@ int main()
 
 	r1 = r2;
 
-	// 아래 코드 결과 예측해 보세요		// C++참조
-	std::cout << v1 << std::endl;	// 20
-	std::cout << v2 << std::endl;	// 20
-	std::cout << r1 << std::endl;	// 20
-	std::cout << r2 << std::endl;	// 20
+	// reference_wrapper 은 "raw reference"로 암시적 변환도 됩니다.
+	int& r3 = r1;
+
+	// 아래 코드 결과 예측해 보세요		// C++참조	reference_wrapper
+	std::cout << v1 << std::endl;	// 20		10
+	std::cout << v2 << std::endl;	// 20		20
+	std::cout << r1 << std::endl;	// 20		20
+	std::cout << r2 << std::endl;	// 20		20
 }
