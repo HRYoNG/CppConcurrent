@@ -82,24 +82,27 @@ RT parallel_sum(IT first, IT last, RT init)
 
     // result_vector 안의 모든 결과를 더하면 됩니다.
     return std::accumulate( result_vector.begin(), 
-                            result_vector.end(), 0);
+                            result_vector.end(), init);
 }
-
-
-
-
-
-
-
-
-
 
 int main()
 {
     init();
-
     auto s = parallel_sum(v.begin(), v.end(), 0); // 0은 초기값
-
-
     std::cout << s << std::endl;
+
+
 }
+/*
+// 결과를 반환하는 방법
+// => 여러개의 스레드로 각각의 구간을 나누어 결과를 담기에는 2번 방법이 편리합니다.
+int sum() {}            // 1. 리턴값으로 반환
+void sum(int& ret) {}   // 2. 마지막 인자에 담아 오는 방법
+                  
+// 스레드가 수행하면 std::ref() 가 필요없는 이유가 뭔가요 ? ?
+int n = 0;
+sum(n); // 주 스레드는 그냥 이렇게 하세요
+
+std::thread t(&sum, std::ref(n)); // n을 직접 보내지 않고
+                                // thread 생성자를 거치게 됩니다.
+                                */
