@@ -20,10 +20,19 @@ int main()
 	// 싱글스레드!
 	// for_each(v.begin(), v.end(), foo);
 	
-	// C++17 부터 60여개의 알고리즘의 병렬 버전이 지원됩니다.
+	// C++17 부터 69여개의 알고리즘의 병렬 버전이 지원됩니다.
 	// => 우리가 만든 "parallel_sum" 처럼 되어 있습니다.
 	for_each( std::execution::par,   v.begin(), v.end(), foo);
+
+
+	// 주의 ! 아래 처럼 사용한다면 "s" 는 동기화 필요합니다.(내일 주제)
+	// 
+//	int s = 0;
+//	for_each(std::execution::par, v.begin(), v.end(), 
+//		[&s](int a) { s += a; });
 }
+
+
 
 
 
