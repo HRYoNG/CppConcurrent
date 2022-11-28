@@ -31,7 +31,15 @@ int main()
 
     int s = 0;
     
-    sum( v.begin(), v.end(), s);
+//  sum( v.begin(), v.end(), s);    // 주스레드가 실행
+
+
+    std::thread t(sum, v.begin(), v.end(), std::ref(s)); // error
+                                    // => 왜 에러일까요 ?
+    t.join();
+
+
+
 
     std::cout << s << std::endl;
 }
