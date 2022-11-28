@@ -5,7 +5,7 @@
 #include <vector>
 #include <iostream>
 #include "chronometry.h"
-constexpr std::size_t sz = 1'000'000;
+constexpr std::size_t sz = 10000000;
 
 std::vector<int> v;
 
