@@ -22,5 +22,12 @@ int main()
                             // foo 실행.
                             // 별도의 "start()"같은 함수 없습니다.
                             // 객체만 생성하면 됩니다.
+
+    // 핵심 2. 스레드를 생성한 경우 반드시 "대기" 하거나 "분리" 해야 합니다.
+    t1.join();  // 새롭게 생성된 스레드가 종료 할때 까지 주스레드 대기
+                // linux   : pthread_join()
+                // windows : WaitForSingleObject()
+
+    std::cout << "main 함수(주스레드) 종료" << std::endl;
 }
 
