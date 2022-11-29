@@ -42,6 +42,8 @@ int main()
 
 // stack  : 스레드당 한개,    함수 호출 종료시 파괴 
 // static : 모든 스레드 공유, 함수 호출 종료시 파괴 안됨
-
+// 전역변수도 thread_local 됩니다.
+int g1 = 0;				// 모든 스레드가 공유
+thread_local int g2 = 0;// 스레드당 한개의 전역변수
 
 
