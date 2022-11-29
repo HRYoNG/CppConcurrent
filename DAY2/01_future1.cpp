@@ -22,7 +22,6 @@ void add(std::promise<int>& p, int a, int b)
     std::this_thread::sleep_for(1s);
     p.set_value(a + b);
 }
-
 int main()
 {
     std::promise<int> pm;
@@ -30,7 +29,32 @@ int main()
 
     std::thread t(add, std::ref(pm), 10, 20);
 
-    int ret = ft.get();
+//  int ret = ft.get(); // 결과가 나올때 까지 무한히 대기 합니다.
+
+
+    std::future_status ret = ft.wait_for(2s); // 2초까지만 대기
+
+    if (ret == std::future_status::ready)
+    {
+        std::cout << "set_value() 가 되어서 결과 준비됨" << std::endl;
+        std::cout << ft.get() << std::endl; // 결과가 이미 있으므로
+                                            // 대기 하지 않음
+    }
+    else if (ret == std::future_status::timeout)
+    {
+        std::cout << "timeout" << std::endl;
+    }
+    else if (ret == std::future_status::deferred)
+    {
+        std::cout << "스레드 아직 실행안됨" << std::endl;
+        std::cout << "async()가 반환된 future 만의 특징" << std::endl;
+    }
+
+
+
+
+
+
 
     t.join();
 }
