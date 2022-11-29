@@ -47,6 +47,7 @@ int main()
     t.join();
 }
 
-
+// shared_future 를 쓸때 주스레드에서는 그냥 future 만 쓰고
+// get() 을 안하는 식으로 사용하는 경우는 없나요?
 
 
