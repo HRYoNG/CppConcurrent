@@ -30,7 +30,7 @@ int main()
 
     // 핵심 4. 생성자에서 lock 하지말고, 나중에 lock 을 할 경우
     // => 또한, timed_mutex 가 가진 try_lock_for 를
-    //    unique_ptr도 제공
+    //    unique_lock도 제공
     std::unique_lock<std::timed_mutex> u5(tm1, std::defer_lock);
     auto ret = u5.try_lock_for(2s);
 
