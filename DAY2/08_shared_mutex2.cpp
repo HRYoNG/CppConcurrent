@@ -14,7 +14,17 @@ using namespace std::literals;
 // 4. 읽는 동안, 다른 스레드도 읽을수 있어야 한다. <<=== 핵심 !!
 
 
+// shared_mutex 동작 방식
 
+// m.lock() 하면 : 다른 스레드의 m.lock(), m.lock_shared() 모두 대기 
+//              => 쓰는 동안은, "쓰기, 읽기" 모두 금지
+// 
+// m.lock_shared() 하면 : 다른 스레드는 m.lock()은 대기
+//                       다른 스레드의 m.lock_shared()는 대기 안함
+//              => 읽는 동안에, "쓰기는 금지, 읽기는 가능"
+// 
+// Write  : m.lock(),        m.unlock()
+// Reader : m.lock_shared(), m.unlock_shared(), 
 
 
 
