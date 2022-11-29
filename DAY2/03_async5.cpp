@@ -74,7 +74,6 @@ long long f2()
 
     std::advance(v1_first, block_size);
     v1_last = v1.end();
-
     std::advance(v2_first, block_size);
 
     std::future<long long> ft4 = std::async([v1_first, v1_last, v2_first]
@@ -84,13 +83,10 @@ long long f2()
     return ft1.get() + ft2.get() + ft3.get() + ft4.get();
 }
 
-
-
-
-
 int main()
 {
     fill_vector();
     
-    f1();
+    chronometry(f1);
+    chronometry(f2);
 }
