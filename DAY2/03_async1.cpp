@@ -26,8 +26,20 @@ using namespace std::literals;
 //				 C++에서는 가장 낮은 레벨의 도구
 //			     스레드로 수행한 함수의 결과를 얻을수 없다.
 
+// std::async : 스레드로 함수를 실행후 결과를 얻을수 있다.
+//				"return 값" 의 결과를 future를 통해서 얻을수 있다.
+//				스레드를 고려하지 않고 만든 일반 함수의 결과도 가능
 
+// std::packaged_task   vs  std::async
 
+// std::async			: 함수를 즉시 비동기로 실행
+
+// std::packaged_task	: 함수를 저장했다가 비동기로 실행
+//				std::packaged_task<int(int, int)> task(foo);
+// 
+//				"std::vector<std::packaged_task> v"
+//				처럼 스레드로 수행할 함수를 저장 가능.
+//				스레드 풀링 기술.
 
 
 int add(int a, int b)
