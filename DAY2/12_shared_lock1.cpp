@@ -26,13 +26,17 @@ void Writer()
     }
 }
 
-
 void Reader(const std::string& name)
 {
     while (1)
     {
         {
-            std::lock_guard<std::shared_mutex> g(m);
+            // lock_guard  : 생성자/소멸자에서 lock/unlock
+            // shared_lock : 생성자/소멸자에서 lock_shared/unlock_shared
+            //std::lock_guard<std::shared_mutex> g(m);
+
+            std::shared_lock<std::shared_mutex> g(m);
+           
             std::cout << "Reader(" << name << ") : " << share_data << std::endl;
             std::this_thread::sleep_for(500ms);            
         }
