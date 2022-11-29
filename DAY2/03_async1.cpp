@@ -1,8 +1,9 @@
 // async1 - packaged task2 บนป็
-
 #include <iostream>
 #include <thread>
 #include <future>
+#include <chrono>
+using namespace std::literals;
 
 int add(int a, int b)
 {
@@ -23,8 +24,5 @@ int main()
 	int ret = ft.get();
 
 	std::cout << ret << std::endl;
-
-	t.join();
-
 }
 
