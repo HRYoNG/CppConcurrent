@@ -15,11 +15,13 @@ void Writer()
 {
     while (1)
     {
-        m.lock();
-        share_data = share_data + 1;
-        std::cout << "Writer : " << share_data << std::endl;
-        std::this_thread::sleep_for(1s);
-        m.unlock();
+        {
+            std::lock_guard<std::shared_mutex> g(m);
+            share_data = share_data + 1;
+            std::cout << "Writer : " << share_data << std::endl;
+            std::this_thread::sleep_for(1s);            
+        }
+
         std::this_thread::sleep_for(10ms);
     }
 }
@@ -29,11 +31,11 @@ void Reader(const std::string& name)
 {
     while (1)
     {
-        m.lock_shared();
-
-        std::cout << "Reader(" << name << ") : " << share_data << std::endl;
-        std::this_thread::sleep_for(500ms);
-        m.unlock_shared();
+        {
+            std::lock_guard<std::shared_mutex> g(m);
+            std::cout << "Reader(" << name << ") : " << share_data << std::endl;
+            std::this_thread::sleep_for(500ms);            
+        }
 
         std::this_thread::sleep_for(10ms);
     }
