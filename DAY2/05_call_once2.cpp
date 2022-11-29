@@ -29,11 +29,22 @@ public:
 Singleton* Singleton::sinstance = nullptr;
 std::once_flag Singleton::flag;
 
+void foo()
+{
+    std::cout << Singleton::getInstance() << std::endl;
+    std::cout << Singleton::getInstance() << std::endl;
+}
 
 int main()
 {
     std::cout << Singleton::getInstance() << std::endl;
     std::cout << Singleton::getInstance() << std::endl;
+
+    std::thread t1(&foo);
+    std::thread t2(&foo);
+
+    t1.join();
+    t2.join();  
 }
 
 
