@@ -39,4 +39,34 @@ int main()
 }
 
 
+/*
+template <class _Mutex>
+class lock_guard 
+{ 
+public:
+	explicit lock_guard(_Mutex& _Mtx) : _MyMutex(_Mtx) { 
+		_MyMutex.lock();
+	}
 
+	lock_guard(_Mutex& _Mtx, adopt_lock_t) : _MyMutex(_Mtx) {} // construct but don't lock
+
+	~lock_guard() noexcept {
+		_MyMutex.unlock();
+	}
+
+	lock_guard(const lock_guard&) = delete;
+	lock_guard& operator=(const lock_guard&) = delete;
+
+private:
+	_Mutex& _MyMutex;
+};
+*/
+// 6개 mutex 모두 lock_guard 사용가능하나요
+// => 네. 6개 모두 lock/unlock 있으므로 가능합니다.
+
+// recursive mutex를 lock_guard에 넣어줘도 될까요?
+// => 네. 가능하고, 그렇게 해야 합니다.
+
+// shared_mutex 를 넣을수 있나요 ?
+// => 네. 하지만, shared_mutex 만의 특징을 사용할수 없습니다.
+// => 사용하려면 이어지는 예제들..
