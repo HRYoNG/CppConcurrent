@@ -67,3 +67,9 @@ int main()
 	t1.join();
 	t2.join();
 }
+
+
+// cv.wait(ul, [] {return !Q.empty(); });
+// => 1. 함수 실행후 결과가 true 이면 대기 안함
+// => 2. 결과가 false 이면 대기(wait)
+// => 3. 신호가 오면.!! 1번 다시 실행(즉, 다시 함수 실행)
