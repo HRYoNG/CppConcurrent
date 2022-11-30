@@ -6,6 +6,13 @@
 #include <string_view>
 using namespace std::literals;
 
+// 정리
+// 일반 mutex 사용시    : std::unique_lock 과 std::condition_variable 사용
+// shared_mutex 사용시 : std::shared_lock 과 std::condition_variable_any 사용
+
+
+
+
 // 어제 배운 "생산자(Writer) 1개, 소비자(Reader) 3개" 예제 입니다.
 
 std::shared_mutex m;
