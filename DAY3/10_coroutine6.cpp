@@ -16,7 +16,15 @@ public:
 	std::coroutine_handle<promise_type> coro; // 코루틴 핸들
 
 	Generator(std::coroutine_handle<promise_type> c) : coro(c) {}
+
+	~Generator() { if (coro) coro.destroy(); }
+
+	// coro.resume() 하면 계속 실행인데.. 다양한 테크닉을 활용가능합니다.
+	void operator()() const { coro.resume(); }
 };
+
+
+
 
 class promise
 {
@@ -39,7 +47,6 @@ public:
 
 Generator foo()
 {
-
 	std::cout << "foo 1" << std::endl;
 
 	co_await std::suspend_always();
@@ -52,11 +59,13 @@ int main()
 	Generator g = foo();
 	std::cout << "continue main 1" << std::endl;
 
-	g.coro.resume(); // 다시 foo() 호출
+//	g.coro.resume(); // 다시 foo() 호출
+	g();
 
 	std::cout << "continue main 2" << std::endl;
 
-	g.coro.resume();
+	//g.coro.resume();
+	g();
 
 	std::cout << "continue main 3" << std::endl;
 }
