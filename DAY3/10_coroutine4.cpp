@@ -3,7 +3,7 @@
 
 // step 3. promise_type 을 클래스로 설계
 
-// 아직 에러 : 
+// 아직 에러 : promise_type 안에는 5개의 약속된 함수가 있어야 합니다.
 
 class promise;
 
