@@ -2,6 +2,8 @@
 #include <mutex>
 #include <thread>
 #include <latch> // C++20
+#include <chrono>
+using namespace std::literals;
 
 // C++20 에서 추가된 동기화 도구 : semaphore, latch, barrier 
 
@@ -25,6 +27,7 @@ void foo(std::string name)
 
 	std::cout << "go home     : " << name << std::endl;
 }
+
 
 int main()
 {
