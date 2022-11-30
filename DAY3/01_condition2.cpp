@@ -18,10 +18,18 @@ void consumer()
     //    신호를 대기 합니다.
     std::unique_lock<std::mutex> ul(m);
 
-    cv.wait(ul);
+    cv.wait(ul);    // 1. ul.unlock() 으로 lock 을 풀고
+                    // 2. cv 에 대해서 신호가 올때 까지 대기 합니다
+                    // 3. 신호가 오면 깨어난후, ul.lock() 으로 다시
+                    //    뮤텍스 획득후.. 다음 코드 실행
+
 
     std::cout << "consume : " << shared_data << std::endl;
 }
+
+
+
+
 void producer()
 {
     std::this_thread::sleep_for(10ms);
