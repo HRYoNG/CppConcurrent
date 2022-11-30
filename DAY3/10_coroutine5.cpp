@@ -32,8 +32,9 @@ Generator foo()
 	//	  Generator 타입의 객체 생성
 
 	// 3. promise_type 안에 있는 initial_update() 호출
+	//		=> 만든 경우만 호출
 
-	// 4. 3에서 만든 객체를 return!!.  즉, 여기서 바로 main 으로 복귀
+	// 4. 2에서 만든 객체를 return!!.  즉, 여기서 바로 main 으로 복귀
 
 	//=========================================================
 	std::cout << "foo 1" << std::endl;
@@ -46,5 +47,9 @@ Generator foo()
 
 int main()
 {
-	foo();
+	Generator g = foo(); 
+	std::cout << "continue main" << std::endl;
+
+	// 이제 g 안에는 coroutine 핸들이 있어야 하고..
+	// 그 핸들로 foo를 다시 호출할수 있습니다.
 }
