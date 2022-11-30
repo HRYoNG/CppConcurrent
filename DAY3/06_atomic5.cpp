@@ -40,9 +40,10 @@ std::atomic<bool> flag;
 
 void foo()
 {
-    std::call_once_nonblock(flag, init);
+//     std::call_once(falg, init); C++ Ç¥ÁØ, ´Ê°Ô µµÂøÇÏ¸é block
+    call_once_nonblock(flag, init);
 
-    std::cout << std::this_thread::get_id() << "finish foo" << std::endl;
+    std::cout << std::this_thread::get_id() << "finish foo " << std::endl;
 }
 
 
