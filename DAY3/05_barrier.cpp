@@ -31,7 +31,8 @@ void foo(std::string name)
 	std::this_thread::sleep_for(1s);
 	std::cout << "finish work : " << name << std::endl;
 
-	complete_cnt.arrive_and_wait();
+	complete_cnt.arrive_and_wait(); // wait 를 통과시
+									// 다시 count reset됩니다. 3 으로
 
 	std::cout << "have dinner : " << name << std::endl;
 
