@@ -54,6 +54,10 @@ void Reader(const std::string& name)
             std::shared_lock<std::shared_mutex> g(m);   
 
             cv.wait(g, []() { return data_ready; } );
+                    // => 이 경우 g 가 shared_lock 이므로
+                    // => lock/unlock 이 아닌
+                    //    lock_shared()/unlock_shared() 를 사용합니다.
+
 
             std::cout << "Reader(" << name << ") : " << share_data << std::endl;
             std::this_thread::sleep_for(500ms);
