@@ -6,6 +6,7 @@
 #include <semaphore> // C++20 의 도구 입니다.
 using namespace std::literals;
 
+// 세마 포어 : 자원을 특정 갯수의 스레드가 공유.!!
 
 // 템플릿 인자 : 최대 카운트
 // 생성자 인자 : 카운트 초기값
