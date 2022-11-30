@@ -36,11 +36,13 @@ void producer()
     {
         std::lock_guard<std::mutex> lg(m);
         shared_data = 100;
-        std::cout << "produce : " << shared_data << std::endl;
+        std::cout << "produce : " << shared_data << std::endl;        
     }
     // 3. 신호를 주는 스레드는 unique_lock 을 사용하지 않아도 됩니다.
     // 공유자원이 준비 되면 신호를 주면 됩니다.
     // 주의사항은 "신호를 주기전에 unlock" 하고 신호를 주세요
+    // => cv.wait() 가 깨어나면 다시 mutex 를 잡아야 합니다.
+    //    그래서, unlock 후에 신호를 주세요
     cv.notify_one();
 }
 
