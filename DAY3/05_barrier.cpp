@@ -16,9 +16,13 @@ void oncomplete() noexcept
 }
 
 
-std::barrier complete_cnt(3, oncomplete); // 여러번 사용가능한 latch 입니다.
+//std::barrier complete_cnt(3, oncomplete); // 여러번 사용가능한 latch 입니다.
 									// 카운트가 0이 되면
 									// "2번째인자로 전달한 함수"가 호출.
+
+std::barrier complete_cnt(3,
+	[]()noexcept {
+		std::cout << "=============== oncomplete ==============\n"; });
 
 
 void foo(std::string name)
