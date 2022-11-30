@@ -45,8 +45,13 @@ Generator foo()
 {
 	std::cout << "foo 1" << std::endl;
 
-	co_await std::suspend_always(); // main 으로 돌아가라!
+//	co_await std::suspend_always(); // main 으로 돌아가라!
 	co_await std::suspend_never();  // 계속 실행
+
+		// "co_await 객체" 입니다. 
+		// => 객체에 있는 약속된 멤버 함수를 호출해서 중지할지, 계속 실행할지를 결정
+		// => 또한 각 단계에서 추가적인 작업 가능.
+
 
 	std::cout << "foo 2" << std::endl;
 }
